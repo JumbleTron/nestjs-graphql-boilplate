@@ -1,9 +1,9 @@
 import { UseInterceptors } from "@nestjs/common";
 import { Args, Int, Query, Resolver } from "@nestjs/graphql";
-import { RateLimit, RateLimiterInterceptor } from "nestjs-rate-limiter";
 import { Author } from "./author.model";
 import { AuthorsService } from "./author.service";
 import { PostsService } from "./post.service";
+import { RateLimiterInterceptor } from "./rate-limiter/rate-limiter.interceptor";
 
 @Resolver(of => Author)
 export class AuthorsResolver {
