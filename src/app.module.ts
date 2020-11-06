@@ -5,9 +5,17 @@ import { AppService } from './app.service';
 import { AuthorsService } from './author.service';
 import { AuthorsResolver } from './authors.resolver';
 import { PostsService } from './post.service';
+import { RateLimiterModule } from 'nestjs-rate-limiter';
 
 @Module({
   imports: [
+    RateLimiterModule.register({
+      for: 'ExpressGraphql',
+      type: 'Memory',
+      points: 1,
+      pointsConsumed: 1,
+      duration: 60
+    }),
     GraphQLModule.forRoot({
       debug: true,
       playground: true,
@@ -16,6 +24,11 @@ import { PostsService } from './post.service';
     }),
   ],
   controllers: [],
-  providers: [AppService, AuthorsResolver, PostsService, AuthorsService],
+  providers: [
+    AppService,
+    AuthorsResolver,
+    PostsService,
+    AuthorsService
+  ],
 })
 export class AppModule {}
