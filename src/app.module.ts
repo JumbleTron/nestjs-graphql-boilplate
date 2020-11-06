@@ -5,9 +5,11 @@ import { AppService } from './app.service';
 import { AuthorsService } from './author.service';
 import { AuthorsResolver } from './authors.resolver';
 import { PostsService } from './post.service';
+import { RateLimiterModule } from './rate-limiter/rate-limiter.module';
 
 @Module({
   imports: [
+    RateLimiterModule.register(),
     GraphQLModule.forRoot({
       debug: true,
       playground: true,
@@ -16,6 +18,11 @@ import { PostsService } from './post.service';
     }),
   ],
   controllers: [],
-  providers: [AppService, AuthorsResolver, PostsService, AuthorsService],
+  providers: [
+    AppService,
+    AuthorsResolver,
+    PostsService,
+    AuthorsService
+  ],
 })
 export class AppModule {}

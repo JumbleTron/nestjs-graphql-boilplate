@@ -17,4 +17,19 @@ export class AuthorsService  {
         author.posts = [post];
         return author;
     }
+
+    public findAll(): Author[] {
+        const post = new Post();
+        post.id = 12;
+        post.title = "Some title 2";
+        post.votes = 42;
+
+        const author = new Author();
+        author.firstName = "Marek";
+        author.lastName = "Marecki";
+        author.id = 5;
+        author.posts = [post];
+        
+        return [author];
+    }
 }
